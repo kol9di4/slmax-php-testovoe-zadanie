@@ -63,7 +63,13 @@ class DataBaseHelper implements IStorage
 
         return false;
     }
-
+    public function getFewRecords(array $idUsers): ?array{
+        $entries = null;
+        foreach ($idUsers as $id){
+            $entries[] = $this->get($id);
+        }
+        return $entries;
+    }
     protected function save(){
         file_put_contents($this->dbPath, json_encode([
             'records' => $this->records,

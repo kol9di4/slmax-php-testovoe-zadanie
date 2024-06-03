@@ -1,1 +1,19 @@
-{"records":{"3":{"name":"Galya","surName":"Nadya","dateOfBirth":"1990-01-01","sex":1,"cityOfBirth":"Minsk"}},"ai":3}
+{
+  "records": {
+    "3": {
+      "name": "Galya",
+      "surName": "Nadya",
+      "dateOfBirth": "1990-01-01",
+      "sex": 1,
+      "cityOfBirth": "Minsk"
+    },
+    "4": {
+      "name": "VASYA",
+      "surName": "PETECHKIN",
+      "dateOfBirth": "1990-01-01",
+      "sex": 1,
+      "cityOfBirth": "Minsk"
+    }
+  },
+  "ai": 4
+}
