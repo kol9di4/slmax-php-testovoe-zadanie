@@ -6,8 +6,6 @@ use App\Base\BaseEntity;
 use App\Contracts\IStorage;
 use App\Contracts\IValidator;
 
-include_once 'DataBaseHelper.php';
-
 class User extends BaseEntity
 {
     protected ?int $id;
