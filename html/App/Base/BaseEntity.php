@@ -9,8 +9,8 @@ use App\Validator;
 
 class BaseEntity
 {
-    protected ?IStorage $connection;
-    protected ?IValidator $validator;
+    protected IStorage $connection;
+    protected IValidator $validator;
 
     public function __construct(?IStorage $connection = null, ?IValidator $validator = null){
         $this->connection = DataBaseHelper::getInstance('db/db.json');

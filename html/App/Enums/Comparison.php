@@ -2,7 +2,12 @@
 
 namespace App\Enums;
 
-Enum Comparison
+enum Comparison
 {
     case Equals;
+    case NotEqual;
+    case More;
+    case MoreOrEqual;
+    case Less;
+    case LessOrEqual;
 }
