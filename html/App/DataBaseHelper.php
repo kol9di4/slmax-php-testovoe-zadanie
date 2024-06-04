@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Contracts\IStorage;
+use App\Enums\Comparison;
 
 class DataBaseHelper implements IStorage
 {
@@ -63,13 +64,59 @@ class DataBaseHelper implements IStorage
 
         return false;
     }
-    public function getFewRecords(array $idUsers): ?array{
+    public function getFewRecords(Comparison $comparison,array $idUsers): ?array{
         $entries = null;
-        foreach ($idUsers as $id){
-            $entries[] = $this->get($id);
+        if ($comparison === Comparison::Equals) {
+            foreach ($idUsers as $id) {
+                $entries[] = $id;
+            }
+        }
+        if ($comparison === Comparison::NotEqual) {
+            for ($i=0; $i <= $this->ai; $i++) {
+                foreach ($idUsers as $id) {
+                    if ($i !== $id) {
+                        if(!is_null($this->get($i))){
+                            $entries[] = $id;
+                        }
+                    }
+                }
+            }
+        }
+        if ($comparison === Comparison::Less) {
+            $min = min($idUsers);
+            for ($i=0; $i < $min; $i++) {
+                if(!is_null($this->get($i))) {
+                    $entries[] = $i;
+                }
+            }
+        }
+        if ($comparison === Comparison::LessOrEqual) {
+            $min = min($idUsers);
+            for ($i=0; $i <= $min; $i++) {
+                if(!is_null($this->get($i))) {
+                    $entries[] = $i;
+                }
+            }
+        }
+        if ($comparison === Comparison::More) {
+            $max = max($idUsers);
+            for ($i=$max+1; $i <= $this->ai; $i++) {
+                if(!is_null($this->get($i))) {
+                    $entries[] = $i;
+                }
+            }
+        }
+        if ($comparison === Comparison::MoreOrEqual) {
+            $max = max($idUsers);
+            for ($i=$max; $i <= $this->ai; $i++) {
+                if(!is_null($this->get($i))) {
+                    $entries[] = $i;
+                }
+            }
         }
         return $entries;
     }
+
     protected function save(){
         file_put_contents($this->dbPath, json_encode([
             'records' => $this->records,
